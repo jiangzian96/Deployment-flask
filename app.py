@@ -19,9 +19,9 @@ def echo(name):
     return jsonify(val)
 
 
-@app.route('/predict/<exp>:<test>:<interview>')
+@app.route('/predict/<int:exp>/<int:test>/<int:interview>')
 def predict(exp, test, interview):
-    prediction = model.predict(np.array([int(exp), int(test), int(interview)]).reshape(1, -1))
+    prediction = model.predict(np.array([exp, test, interview]).reshape(1, -1))
     output = round(prediction[0], 2)
 
     return jsonify({"salary": output})
