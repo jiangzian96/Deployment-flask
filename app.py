@@ -1,42 +1,26 @@
 import numpy as np
-from flask import Flask, json, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template
 import pickle
-import argparse
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
-
 @app.route('/')
 def home():
-    return "Hello"
+    return render_template('index.html')
 
+@app.route('/predict',methods=['POST'])
+def predict():
+    '''
+    For rendering results on HTML GUI
+    '''
+    int_features = [int(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
 
-@app.route('/echo/<name>')
-def echo(name):
-    print(f"This was placed in the url: new-{name}")
-    val = {"new-name": name}
-    return jsonify(val)
-
-
-@app.route('/predict/<int:exp>/<int:test>/<int:interview>')
-def predict(exp, test, interview):
-    prediction = model.predict(np.array([exp, test, interview]).reshape(1, -1))
     output = round(prediction[0], 2)
 
-    return jsonify({"salary": output})
-
-
-@app.route('/predict_api',methods=['POST'])
-def predict_api():
-    '''
-    For direct API calls trought request
-    '''
-    data = request.get_json(force=True)
-    prediction = model.predict([np.array(list(data.values()))])
-
-    output = prediction[0]
-    return jsonify(output)
+    return render_template('index.html', prediction_text='Employee Salary should be $ {}'.format(output))
 
 
 if __name__ == "__main__":
