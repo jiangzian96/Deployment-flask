@@ -1,6 +1,7 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
+import json
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
@@ -35,6 +36,7 @@ def predict_api():
         return jsonify({"error": "you did not provide data"})
     else:
         data = request.get_json(force=True)
+        data = json.loads(data)
         return jsonify({"received": data})
         #prediction = model.predict([np.array(list(data.values()))])
         #output = prediction[0]
