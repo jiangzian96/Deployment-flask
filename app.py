@@ -36,7 +36,7 @@ def predict_api():
         return jsonify({"error": "you did not provide data"})
     else:
         data = request.get_json(force=True)
-        data = json.load(data)
+        data = json.loads(data)
         return jsonify({"received": data})
         #prediction = model.predict([np.array(list(data.values()))])
         #output = prediction[0]
