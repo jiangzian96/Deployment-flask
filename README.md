@@ -33,10 +33,10 @@ python model.py
 ```
 This would create a serialized version of our model into a file ```model.pkl```
 
-2. Run app.py using below command to start Flask API
+4. Run app.py using below command to start Flask API
 ```
 python app.py
 ```
 By default, flask will run on port 5000.
 
-3. Change the input data in ```make_prediction.sh``` and run it.
+5. Change the input data in ```make_prediction.sh``` and run it.
