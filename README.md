@@ -37,8 +37,9 @@ This would create a serialized version of our model into a file ```model.pkl```
 ```
 python app.py
 ```
+You can navigate to ```locahost:5000``` to see the "hello world" homepage.
 
-5. Change the input data in ```make_prediction.sh``` and run it.
+5. Change the input data in ```make_prediction.sh``` and run it in terminal.
 
 ### Running the project on hosted server on AWS ECS
-1. Change the input data in ```make_prediction_aws.sh``` and run it.
+1. Change the input data in ```make_prediction_aws.sh``` and run it in terminal.
