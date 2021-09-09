@@ -37,6 +37,8 @@ This would create a serialized version of our model into a file ```model.pkl```
 ```
 python app.py
 ```
-By default, flask will run on port 5000.
 
 5. Change the input data in ```make_prediction.sh``` and run it.
+
+### Running the project on hosted server on AWS ECS
+1. Change the input data in ```make_prediction_aws.sh``` and run it.
